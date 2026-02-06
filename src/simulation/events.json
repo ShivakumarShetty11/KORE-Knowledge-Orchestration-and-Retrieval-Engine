@@ -1,0 +1,1002 @@
+[
+  {
+    "topic": "raw-git-prs",
+    "delay": 0,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 505,
+        "title": "Quick fix for timeout issue",
+        "body": "Running late but needed to fix the timeout. Hardcoded the AWS_ACCESS_KEY_ID='AKIA_TEST_1234' temporarily. Will move to env vars on Monday.",
+        "user": { "login": "Bob Smith" },
+        "state": "open",
+        "merged": false,
+        "merged_by": null,
+        "requested_reviewers": [{ "login": "Alice Chen" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 2,
+    "data": {
+      "user": "U-Bob",
+      "username": "Bob Smith",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Hey guys, I just pushed a quick patch to `kore-payments`. I know it's Friday, but it's small.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 5,
+    "data": {
+      "user": "BOT",
+      "username": "Datadog Bot",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "CRITICAL: PaymentGateway latency > 10s. Error Rate 100%. Affected endpoints: /checkout, /payment/process",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 6,
+    "data": {
+      "user": "U-Eve",
+      "username": "Eve Polastri",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "@here Customers are reporting 500 errors on checkout! We are losing money! What changed?",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 8,
+    "data": {
+      "user": "U-Alice",
+      "username": "Alice Chen",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "I see a new PR from Bob. @Bob Smith did you deploy?",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 20,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "John Doe" },
+      "issue": {
+        "key": "INC-2024",
+        "fields": {
+          "summary": "Production Down: Payment Gateway Outage",
+          "description": "Rollback in progress. Root cause identified: bad commit abc1234 (PR-505) bypassing retry logic.",
+          "status": { "name": "Investigating" },
+          "priority": { "name": "P0-Critical" },
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-commits",
+    "delay": 12,
+    "data": {
+      "commit": {
+        "id": "abc123-timeout-hotfix",
+        "message": "Quick hotfix for timeout, bypassing retry logic for now",
+        "author": { "name": "Bob Smith", "email": "bob@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "added": ["src/payments/retry.py"],
+        "modified": ["src/payments/gateway.py"],
+        "removed": []
+      },
+      "repository": { "name": "kore-payments" },
+      "ref": "refs/heads/main"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 15,
+    "data": {
+      "user": "U-SRE-John",
+      "username": "John Doe",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "I am checking the deploy logs. There was a push to main 10 minutes ago from Bob. Investigating.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 18,
+    "data": {
+      "user": "U-Manager",
+      "username": "Priya Singh",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "We already have 700+ checkout failures reported. Team, I need RCA and rollback ETA now.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 20,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "John Doe" },
+      "issue": {
+        "key": "INC-2024",
+        "fields": {
+          "summary": "Production Down: Payment Gateway Outage",
+          "description": "Rollback in progress. Root cause suspected: bad commit bypassing retry logic.",
+          "status": { "name": "Investigating" },
+          "priority": { "name": "P0-Critical" },
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 25,
+    "data": {
+      "user": "U-Bob",
+      "username": "Bob Smith",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "I might have disabled the retry backoff to speed tests. Did not expect prod to pick it up.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-commits",
+    "delay": 28,
+    "data": {
+      "commit": {
+        "id": "def456-revert-hotfix",
+        "message": "Revert 'Quick hotfix for timeout' - caused production outage",
+        "author": { "name": "John Doe", "email": "john@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "modified": ["src/payments/gateway.py", "src/payments/retry.py"],
+        "reverts": "abc123-timeout-hotfix"
+      },
+      "repository": { "name": "kore-payments" },
+      "ref": "refs/heads/main"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 30,
+    "data": {
+      "user": "BOT",
+      "username": "Datadog Bot",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "Recovery underway: latency returning to normal. Error rate dropping to 5%.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 35,
+    "data": {
+      "action": "closed",
+      "pull_request": {
+        "number": 505,
+        "title": "Quick fix for timeout issue",
+        "body": "Running late but needed to fix the timeout. Hardcoded the AWS_ACCESS_KEY_ID='AKIA_TEST_1234' temporarily. Will move to env vars on Monday.",
+        "user": { "login": "Bob Smith" },
+        "state": "closed",
+        "merged": false,
+        "closed_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 40,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "Eve Polastri" },
+      "issue": {
+        "key": "INC-2024",
+        "fields": {
+          "summary": "Production Down: Payment Gateway Outage - RESOLVED",
+          "description": "Rollback complete. Production healthy. Root cause: unsafe Friday commit with hardcoded key and disabled safety logic.",
+          "status": { "name": "Resolved" },
+          "priority": { "name": "P0-Critical" },
+          "resolution": { "name": "Fixed" },
+          "resolutiondate": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 50,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 506,
+        "title": "Security: Rotate Compromised AWS Keys",
+        "body": "Detected leaked AWS Key AKIA_TEST_1234 in previous PR #505. Rotating keys and scrubbing git history. Fixes SEC-3001.",
+        "user": { "login": "Diana Prince" },
+        "state": "open",
+        "merged": false,
+        "merged_by": null,
+        "requested_reviewers": [{ "login": "Alice Chen" }, { "login": "Bob Smith" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 52,
+    "data": {
+      "user": "U-Diana",
+      "username": "Diana Prince",
+      "channel": "C-SEC",
+      "channel_name": "security-alerts",
+      "text": "@Bob Smith We flagged a hardcoded secret in your Friday hotfix. I'm opening a P1 security ticket. Please be more careful.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 55,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Diana Prince" },
+      "issue": {
+        "key": "SEC-3001",
+        "fields": {
+          "summary": "Credential Leak in Payment Gateway",
+          "description": "AWS Access Key leaked in PR-505. Keys must be rotated immediately per Policy SEC-102. This violates our secret management standard.",
+          "status": { "name": "Open" },
+          "priority": { "name": "P1-High" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-commits",
+    "delay": 60,
+    "data": {
+      "commit": {
+        "id": "sec-scrub-999",
+        "message": "Scrubbing secrets from history [skip ci]",
+        "author": { "name": "Diana Prince", "email": "diana@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "modified": [".git-history-filter", "scripts/rotate-keys.sh"]
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 63,
+    "data": {
+      "action": "closed",
+      "pull_request": {
+        "number": 506,
+        "title": "Security: Rotate Compromised AWS Keys",
+        "body": "Detected leaked AWS Key AKIA_TEST_1234 in previous PR #505. Rotating keys and scrubbing git history. Fixes SEC-3001.",
+        "user": { "login": "Diana Prince" },
+        "state": "closed",
+        "merged": true,
+        "merged_by": { "login": "Alice Chen" },
+        "closed_at": "AUTO_ISO_TIME",
+        "merged_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 65,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "Diana Prince" },
+      "issue": {
+        "key": "SEC-3001",
+        "fields": {
+          "summary": "Credential Leak in Payment Gateway - RESOLVED",
+          "description": "Keys rotated. History scrubbed. Incident closed. Post-mortem scheduled.",
+          "status": { "name": "Resolved" },
+          "priority": { "name": "P1-High" },
+          "resolution": { "name": "Fixed" },
+          "resolutiondate": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 70,
+    "data": {
+      "user": "U-Alice",
+      "username": "Alice Chen",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Team reminder: NO Friday deploys after 2 PM per POL-001. We just had a major outage from this. Let's follow the process.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 80,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 507,
+        "title": "Add database migration for user preferences",
+        "body": "Adding new columns to users table: preferences JSONB, last_login TIMESTAMP. Migration is backward compatible with DEFAULT values.",
+        "user": { "login": "Alice Chen" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "John Doe" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 85,
+    "data": {
+      "user": "U-Alice",
+      "username": "Alice Chen",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Opened PR #507 for user preferences feature. Follows DB-500 policy - backward compatible migration with defaults.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 90,
+    "data": {
+      "action": "review_requested",
+      "pull_request": {
+        "number": 507,
+        "state": "open"
+      },
+      "requested_reviewer": { "login": "John Doe" },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 95,
+    "data": {
+      "user": "U-SRE-John",
+      "username": "John Doe",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Reviewed PR #507. Migration looks good, tested on staging with 1M rows - no performance issues. Approving.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 100,
+    "data": {
+      "action": "closed",
+      "pull_request": {
+        "number": 507,
+        "title": "Add database migration for user preferences",
+        "user": { "login": "Alice Chen" },
+        "state": "closed",
+        "merged": true,
+        "merged_by": { "login": "John Doe" },
+        "closed_at": "AUTO_ISO_TIME",
+        "merged_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 110,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Eve Polastri" },
+      "issue": {
+        "key": "FEAT-1001",
+        "fields": {
+          "summary": "User Preferences Dashboard",
+          "description": "Allow users to customize their dashboard layout and notification settings. Backend ready (PR #507 merged).",
+          "status": { "name": "In Progress" },
+          "priority": { "name": "P2-Medium" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 120,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 301,
+        "title": "Frontend: User preferences UI",
+        "body": "React component for user preferences. Connects to new backend API. Fixes FEAT-1001.",
+        "user": { "login": "Eve Polastri" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Alice Chen" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-frontend" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 130,
+    "data": {
+      "user": "BOT",
+      "username": "CI Bot",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "PR #301 (kore-frontend) - All checks passed: Tests (12/12), Lint (0 issues), Bundle size OK",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 140,
+    "data": {
+      "action": "closed",
+      "pull_request": {
+        "number": 301,
+        "title": "Frontend: User preferences UI",
+        "user": { "login": "Eve Polastri" },
+        "state": "closed",
+        "merged": true,
+        "merged_by": { "login": "Alice Chen" },
+        "closed_at": "AUTO_ISO_TIME",
+        "merged_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-frontend" }
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 145,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "Eve Polastri" },
+      "issue": {
+        "key": "FEAT-1001",
+        "fields": {
+          "summary": "User Preferences Dashboard - COMPLETE",
+          "description": "Feature shipped. Frontend PR #301 merged. Backend PR #507 already in production.",
+          "status": { "name": "Done" },
+          "priority": { "name": "P2-Medium" },
+          "resolution": { "name": "Done" },
+          "resolutiondate": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 160,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 508,
+        "title": "Upgrade JWT signing algorithm to ES256",
+        "body": "Switching from HS256 to ES256 for better security. Updated public keys in config.",
+        "user": { "login": "Diana Prince" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Bob Smith" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 165,
+    "data": {
+      "user": "U-Diana",
+      "username": "Diana Prince",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Merging PR #508 to upgrade Auth service encryption. This is a critical security update.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 170,
+    "data": {
+      "action": "closed",
+      "pull_request": {
+        "number": 508,
+        "title": "Upgrade JWT signing algorithm to ES256",
+        "user": { "login": "Diana Prince" },
+        "state": "closed",
+        "merged": true,
+        "merged_by": { "login": "Bob Smith" },
+        "closed_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 180,
+    "data": {
+      "user": "BOT",
+      "username": "Datadog Bot",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "CRITICAL: APIGateway 502 Error Rate > 15%. Auth Latency > 2s. Services failing to validate tokens.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 182,
+    "data": {
+      "user": "U-Eve",
+      "username": "Eve Polastri",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "Users are getting logged out immediately after login. Is Auth down?",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 185,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Eve Polastri" },
+      "issue": {
+        "key": "INC-2025",
+        "fields": {
+          "summary": "Major Outage: Global Authentication Failure",
+          "description": "All services returning 401/502. Suspected issue with recent Auth deployment. Users cannot log in.",
+          "status": { "name": "Open" },
+          "priority": { "name": "P0-Critical" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 190,
+    "data": {
+      "user": "U-Bob",
+      "username": "Bob Smith",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "I think the APIGateway doesn't have the new ES256 public keys yet. It's failing to verify the new tokens Diana pushed.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-git-commits",
+    "delay": 195,
+    "data": {
+      "commit": {
+        "id": "rev-999-auth-rollback",
+        "message": "Revert \"Upgrade JWT signing algorithm to ES256\" - caused INC-2025",
+        "author": { "name": "Diana Prince", "email": "diana@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "modified": ["src/auth/config.go"],
+        "reverts": "commit-hash-of-pr-508"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 200,
+    "data": {
+      "user": "U-Diana",
+      "username": "Diana Prince",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "Reverted PR #508. Rolling back `kore-auth` to previous version. Give it 2 mins.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 210,
+    "data": {
+      "webhookEvent": "jira:issue_updated",
+      "user": { "name": "Diana Prince" },
+      "issue": {
+        "key": "INC-2025",
+        "fields": {
+          "summary": "Major Outage: Global Authentication Failure - RESOLVED",
+          "description": "Service restored. Root cause: APIGateway key mismatch with new AuthService algorithm (PR #508). Rolled back.",
+          "status": { "name": "Resolved" },
+          "priority": { "name": "P0-Critical" },
+          "resolution": { "name": "Fixed" },
+          "resolutiondate": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-git-prs",
+    "delay": 230,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 305,
+        "title": "Optimization: Lazy load heavy dashboard widgets",
+        "body": "Dashboard is taking 5s to load. Implementing lazy loading for analytics charts. Risk: Low.",
+        "user": { "login": "Eve Polastri" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Alice Chen" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-frontend" }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 240,
+    "data": {
+      "user": "BOT",
+      "username": "New Relic Bot",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "⚠️ WARNING: Frontend LCP (Largest Contentful Paint) degraded by 40% on /dashboard route.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 245,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Alice Chen" },
+      "issue": {
+        "key": "PERF-102",
+        "fields": {
+          "summary": "Dashboard Performance Regression",
+          "description": "Loading times spiked after recent frontend push. Suspect lazy loading implementation in PR #305 introduced a render blocking bug.",
+          "status": { "name": "Open" },
+          "priority": { "name": "P2-High" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+  {
+    "topic": "raw-slack-chats",
+    "delay": 300,
+    "data": {
+      "user": "U-SRE-John",
+      "username": "John Doe",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Investigating PERF-102. The lazy load script is blocking the main thread for ~400ms. Trying a patch.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-git-commits",
+    "delay": 305,
+    "data": {
+      "commit": {
+        "id": "perf-hotfix-001",
+        "message": "Attempt fix for dashboard LCP regression",
+        "author": { "name": "John Doe", "email": "john@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "modified": ["frontend/src/dashboard/lazy-loader.js"]
+      },
+      "repository": { "name": "kore-frontend" },
+      "ref": "refs/heads/main"
+    }
+  },
+
+  {
+    "topic": "raw-git-prs",
+    "delay": 310,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 309,
+        "title": "Fix: Non-blocking lazy loader for dashboard widgets",
+        "body": "Refactors lazy loader to defer hydration. Mitigates PERF-102. Requires staging validation.",
+        "user": { "login": "John Doe" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Alice Chen" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-frontend" }
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 315,
+    "data": {
+      "user": "U-Alice",
+      "username": "Alice Chen",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Reviewed PR #309. Patch looks correct. Need to test on staging with real analytics load.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 320,
+    "data": {
+      "user": "U-SRE-John",
+      "username": "John Doe",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "Staging shows intermittent blank-screen flashes after loading. Might be related to the hydration changes in PR #309.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 322,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "John Doe" },
+      "issue": {
+        "key": "PERF-103",
+        "fields": {
+          "summary": "Dashboard flashing during hydration",
+          "description": "Staging displays brief blank-screen flashes after lazy load refactor (PR #309). Needs investigation before merge.",
+          "status": { "name": "Open" },
+          "priority": { "name": "P1-High" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 330,
+    "data": {
+      "user": "BOT",
+      "username": "Datadog Bot",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "⚠️ WARNING: AuthService p95 latency spiked from 180ms to 450ms.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 333,
+    "data": {
+      "user": "U-Diana",
+      "username": "Diana Prince",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Not another auth issue. Checking the token validator path. Might be config-related.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-git-commits",
+    "delay": 335,
+    "data": {
+      "commit": {
+        "id": "auth-opt-220",
+        "message": "Optimize token validator, reduce ECDSA key parsing overhead",
+        "author": { "name": "Diana Prince", "email": "diana@kore.com" },
+        "timestamp": "AUTO_ISO_TIME",
+        "modified": ["src/auth/validator.go"]
+      },
+      "repository": { "name": "kore-auth" },
+      "ref": "refs/heads/main"
+    }
+  },
+
+  {
+    "topic": "raw-git-prs",
+    "delay": 340,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 509,
+        "title": "Performance: Reduce ECDSA validation overhead",
+        "body": "Reduces repeated parsing of public keys. Should lower p95 latency.",
+        "user": { "login": "Diana Prince" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Bob Smith" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-auth" }
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 345,
+    "data": {
+      "user": "U-SRE-John",
+      "username": "John Doe",
+      "channel": "C-INC",
+      "channel_name": "incidents",
+      "text": "APIGateway not caching public keys correctly. Cache TTL is still 5 seconds, should be 300.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 348,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "John Doe" },
+      "issue": {
+        "key": "INC-2026",
+        "fields": {
+          "summary": "Intermittent Authentication Latency Spikes",
+          "description": "APIGateway not respecting public-key cache TTL. Causing repeated ECDSA key fetches.",
+          "status": { "name": "Investigating" },
+          "priority": { "name": "P1-High" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 355,
+    "data": {
+      "user": "U-Alice",
+      "username": "Alice Chen",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "Retry backoff logic still too aggressive after the revert. We need exponential backoff reinstated.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  },
+
+  {
+    "topic": "raw-git-prs",
+    "delay": 360,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 510,
+        "title": "Restore exponential retry backoff for PaymentGateway",
+        "body": "Adds exponential backoff, jitter, and circuit-breaker thresholds.",
+        "user": { "login": "Alice Chen" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "Diana Prince" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 365,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Alice Chen" },
+      "issue": {
+        "key": "REL-2001",
+        "fields": {
+          "summary": "PaymentGateway unstable under moderate load",
+          "description": "Post-incident review found missing exponential backoff logic and lack of circuit breaking.",
+          "status": { "name": "In Progress" },
+          "priority": { "name": "P1-High" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+
+  {
+    "topic": "raw-git-prs",
+    "delay": 370,
+    "data": {
+      "action": "opened",
+      "pull_request": {
+        "number": 511,
+        "title": "Introduce automated secret scanning in CI",
+        "body": "Adds trufflehog + custom SEC-102 rule to block commits with secrets.",
+        "user": { "login": "Diana Prince" },
+        "state": "open",
+        "merged": false,
+        "requested_reviewers": [{ "login": "John Doe" }],
+        "created_at": "AUTO_ISO_TIME",
+        "updated_at": "AUTO_ISO_TIME"
+      },
+      "repository": { "name": "kore-payments" }
+    }
+  },
+
+  {
+    "topic": "raw-jira-tickets",
+    "delay": 375,
+    "data": {
+      "webhookEvent": "jira:issue_created",
+      "user": { "name": "Diana Prince" },
+      "issue": {
+        "key": "SEC-3002",
+        "fields": {
+          "summary": "Add automated secret scanning to all critical repos",
+          "description": "Follow-up work to SEC-3001. Missing enforcement in CI allowed hardcoded AWS key earlier.",
+          "status": { "name": "Open" },
+          "priority": { "name": "P2-Medium" },
+          "created": "AUTO_ISO_TIME",
+          "updated": "AUTO_ISO_TIME"
+        }
+      }
+    }
+  },
+
+  {
+    "topic": "raw-slack-chats",
+    "delay": 380,
+    "data": {
+      "user": "BOT",
+      "username": "New Relic Bot",
+      "channel": "C-DEV",
+      "channel_name": "dev-team",
+      "text": "⚠️ WARNING: Dashboard TTI increased by +22% after test build of PR #309.",
+      "ts": "AUTO_UNIX_TIME"
+    }
+  }
+]
